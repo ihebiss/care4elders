@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/care4elders-medihebissaoui.iml" filepath="$PROJECT_DIR$/.idea/care4elders-medihebissaoui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/care4elders-medihebissaoui/carecareforEldres.iml" filepath="$PROJECT_DIR$/care4elders-medihebissaoui/carecareforEldres.iml" />
+    </modules>
+  </component>
+</project>
