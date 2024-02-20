@@ -1,6 +1,9 @@
 package com.example.carecareforeldres.Entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -14,9 +17,9 @@ import lombok.experimental.FieldDefaults;
 public class Ordannance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long idOrd;
-    Integer quantite;
-    String description;
+     Long idOrd;
+     Integer quantite;
+     String description;
 
 
 

@@ -1,5 +1,4 @@
 package com.example.carecareforeldres.Entity;
-
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -27,8 +26,13 @@ public class Etablissement {
     List<Ambulance>ambulances;
     @OneToOne(cascade = CascadeType.ALL)
     Morgue morgue;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "etablissement")
+    List<Patient> patients;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "etablissement")
+    List<User> p_medical;
 
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="etablissement")
     private List<Evennement> Evennements;
 }
+

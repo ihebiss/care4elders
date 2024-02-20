@@ -1,26 +1,27 @@
 package com.example.carecareforeldres.Entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
-import java.io.Serializable;
-@Entity
-@AllArgsConstructor
-@NoArgsConstructor
+import java.util.List;
+
 @Getter
 @Setter
-public class Patient implements Serializable {
+@NoArgsConstructor
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@Entity
+public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idpatient;
-    @Enumerated(EnumType.STRING)
-    private TypePatient typePatient;
-    private Boolean archiver;
-    @OneToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
-
+    Long idpatient;
+    @ManyToOne(cascade = CascadeType.ALL)
+    Ambulance ambulance;
+    @ManyToOne(cascade = CascadeType.ALL)
+    Etablissement etablissement;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy ="patient")
+    List<Rdv> rdvs;
+    @ManyToOne(cascade = CascadeType.ALL)
+    Morgue morgue;
 }

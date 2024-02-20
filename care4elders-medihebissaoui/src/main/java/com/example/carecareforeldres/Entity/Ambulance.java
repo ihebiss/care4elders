@@ -5,6 +5,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,7 +24,13 @@ public class Ambulance {
     EtatAmb etatAmb;
     LocalDate dateDernEntret;
     @OneToOne(cascade = CascadeType.ALL)
-    Localisation localisation;
+     Localisation localisation;
     @ManyToOne(cascade = CascadeType.ALL)
     Etablissement etablissement;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "ambulance")
+    List<Patient>patients;
+    @OneToOne(cascade = CascadeType.ALL,mappedBy = "ambulance")
+    User amnulancier;
 }
+
+

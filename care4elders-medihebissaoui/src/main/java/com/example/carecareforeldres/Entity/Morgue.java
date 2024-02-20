@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,4 +19,6 @@ public class Morgue {
     Integer nbCadavre;
     @OneToOne(cascade = CascadeType.ALL,mappedBy ="morgue")
     Etablissement etablissement;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "morgue")
+    List<Patient> patients;
 }

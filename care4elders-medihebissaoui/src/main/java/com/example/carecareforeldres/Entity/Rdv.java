@@ -21,5 +21,9 @@ public class Rdv {
     String lienMeet;
     @OneToOne(cascade = CascadeType.ALL)
     Ordannance ordannance;
+    @ManyToOne(cascade = CascadeType.ALL)
+    User medecin;
+    @ManyToOne(cascade = CascadeType.ALL)
+    Patient patient;
 
 }

@@ -86,4 +86,12 @@ public class User  implements UserDetails {
 
     @ManyToMany
     private List<Evennement> evennements;
+
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    Etablissement etablissement;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy ="medecin")
+    List<Rdv>rdvs;
+    @OneToOne(cascade = CascadeType.ALL)
+    Ambulance ambulance;
 }
