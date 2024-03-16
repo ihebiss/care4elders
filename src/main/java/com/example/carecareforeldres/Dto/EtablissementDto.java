@@ -38,5 +38,16 @@ public class EtablissementDto {
                .prixNuit(Entity.getPrixNuit())
                .build();
    }
+    public static Etablissement toEntity(EtablissementDto Entity){
+        return Etablissement.builder()
+                .idEtab(Entity.getIdEtab())
+                .adresse(Entity.getAdresse())
+                .nbLits(Entity.getNbLits())
+                .nomEtab(Entity.getNomEtab())
+                .typeEtab(Entity.getTypeEtab())
+                .numFixe(Entity.getNumFixe())
+                .prixNuit(Entity.getPrixNuit())
+                .build();
+    }
 
    }

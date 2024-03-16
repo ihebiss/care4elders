@@ -3,6 +3,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.io.Serializable;
+
 
 @Getter
 @Setter
@@ -10,7 +12,8 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-public class Ordannance {
+@Builder
+public class Ordannance implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
      Long idOrd;

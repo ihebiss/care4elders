@@ -1,6 +1,5 @@
 package com.example.carecareforeldres.Entity;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 

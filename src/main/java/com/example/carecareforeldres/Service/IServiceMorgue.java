@@ -13,5 +13,7 @@ public interface IServiceMorgue {
     public Morgue retrieveMorgue(Long idMorgue);
 
     void removeMorgue(Long idMorgue);
+    public Morgue addMorgueAndAssignToEtabliss (Morgue morgue, Long idEtab);
+
 
 }

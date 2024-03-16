@@ -1,8 +1,10 @@
 package com.example.carecareforeldres.Entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Getter
@@ -11,7 +13,8 @@ import java.util.List;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-public class Etablissement {
+@Builder
+public class Etablissement implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long idEtab;
@@ -22,14 +25,16 @@ public class Etablissement {
     TypeEtab typeEtab;
     Integer nbLits;
     float prixNuit;
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "etablissement")
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "etablissement",fetch = FetchType.EAGER)
     List<Ambulance>ambulances;
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     Morgue morgue;
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "etablissement")
+   /* @OneToMany(cascade = CascadeType.ALL,mappedBy = "etablissement")
     List<Patient> patients;
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "etablissement")
-    List<User> p_medical;
+    List<User> p_medical;*/
 
 }
 

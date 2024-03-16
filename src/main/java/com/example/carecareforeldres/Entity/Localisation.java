@@ -3,6 +3,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.io.Serializable;
+
 
 @Getter
 @Setter
@@ -10,7 +12,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-public class Localisation {
+public class Localisation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
      Long idLocal;

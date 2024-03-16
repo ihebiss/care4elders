@@ -24,10 +24,20 @@ public class AmbulanceDto {
     LocalDate dateDernEntret;
   /*  @OneToOne(cascade = CascadeType.ALL)
     Localisation localisation;
-    @ManyToOne(cascade = CascadeType.ALL)
-    Etablissement etablissement;*/
-    public AmbulanceDto toDto(Ambulance Entity){
+    @ManyToOne(cascade = CascadeType.ALL)*/
+    Etablissement etablissement;
+    public static AmbulanceDto toDto(Ambulance Entity){
         return AmbulanceDto.builder()
+                .idAmb(Entity.getIdAmb())
+                .busy(Entity.isBusy())
+                .marque(Entity.getMarque())
+                .matricule(Entity.getMatricule())
+                .etatAmb(Entity.getEtatAmb())
+                .dateDernEntret(Entity.getDateDernEntret())
+                .build();
+    }
+    public static Ambulance toEntite(AmbulanceDto Entity){
+        return Ambulance.builder()
                 .idAmb(Entity.getIdAmb())
                 .busy(Entity.isBusy())
                 .marque(Entity.getMarque())

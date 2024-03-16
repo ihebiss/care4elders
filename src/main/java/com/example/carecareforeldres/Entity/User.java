@@ -18,7 +18,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Table(name = "user")
-public class User  implements UserDetails {
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
@@ -32,10 +32,10 @@ public class User  implements UserDetails {
 
         List<GrantedAuthority> roless = new ArrayList<>() ;
         for (Role authority : roles ) {
-            if (authority !=null)
+            if (authority !=null&& authority.getName() != null)
                 roless.add(new SimpleGrantedAuthority(authority.getName().name()));
             else
-                System.out.println("----- U have no AUtority Bro ----");
+                System.out.println("----- U have no role ----");
         }
         return roless;
     }
@@ -74,10 +74,5 @@ public class User  implements UserDetails {
     }
     @OneToMany(mappedBy = "UserAuth" ,cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private Set<Role> roles;
-    @ManyToOne(cascade = CascadeType.ALL)
-    Etablissement etablissement;
-    @OneToMany(cascade = CascadeType.ALL,mappedBy ="medecin")
-    List<Rdv>rdvs;
-    @OneToOne(cascade = CascadeType.ALL)
-    Ambulance ambulance;
+   
 }

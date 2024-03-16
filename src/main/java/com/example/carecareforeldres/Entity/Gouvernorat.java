@@ -3,6 +3,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Getter
@@ -12,7 +13,7 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 
-public class Gouvernorat {
+public class Gouvernorat implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
      Long idGouv;

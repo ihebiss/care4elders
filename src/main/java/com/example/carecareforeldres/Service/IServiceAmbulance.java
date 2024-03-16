@@ -13,5 +13,10 @@ public interface IServiceAmbulance {
     public Ambulance retrieveAmbulance(Long idAmb);
 
     void removeAmbulance(Long idAmb);
+    public Ambulance addAmbulanceAndAssignToEtabliss (Ambulance ambulance, Long idEtab);
+    public Ambulance UnassignAmbulanceEtabliss(Long idAmb);
+
+
+
 
 }

@@ -1,5 +1,6 @@
 package com.example.carecareforeldres.Dto;
 
+import com.example.carecareforeldres.Entity.Etablissement;
 import com.example.carecareforeldres.Entity.Ordannance;
 import com.example.carecareforeldres.Entity.Rdv;
 import jakarta.persistence.CascadeType;
@@ -20,7 +21,7 @@ public class RdvDto {
     String lienMeet;
     /*@OneToOne(cascade = CascadeType.ALL)
     Ordannance ordannance;*/
-    public RdvDto toDto(Rdv Entity){
+    public static RdvDto toDto(Rdv Entity){
         return RdvDto.builder()
                 .idRDV(Entity.getIdRDV())
                 .dateRDV(Entity.getDateRDV())
@@ -28,5 +29,13 @@ public class RdvDto {
                 .lienMeet(Entity.getLienMeet())
                 .build();
     }
-
+    public static Rdv toEntity(RdvDto Entity){
+        return Rdv.builder()
+                .idRDV(Entity.getIdRDV())
+                .dateRDV(Entity.getDateRDV())
+                .enLigne(Entity.isEnLigne())
+                .lienMeet(Entity.getLienMeet())
+                .build();
+    }
 }
+

@@ -1,6 +1,7 @@
 package com.example.carecareforeldres.Service;
 
 import com.example.carecareforeldres.Entity.Etablissement;
+import com.example.carecareforeldres.Entity.Morgue;
 
 import java.util.List;
 
@@ -13,5 +14,7 @@ public interface IServiceEtablissement {
     public Etablissement retrieveEtablissement(Long idEtab);
 
     void removeEtablissement(Long idEtab);
+    public void Changement_Etat_Ambul();
+    public void MaintenanceToFonctionelle();
 
 }

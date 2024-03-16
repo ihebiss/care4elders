@@ -12,13 +12,14 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Patient implements Serializable {
+
+public class PersonneMedical implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idpatient;
+    private Integer idpers;
+    private Boolean desponible;
     @Enumerated(EnumType.STRING)
-    private TypePatient typePatient;
-    private Boolean archiver;
-    private Integer user;
+    private PationTYpe pationTYpe;
+
 
 }
