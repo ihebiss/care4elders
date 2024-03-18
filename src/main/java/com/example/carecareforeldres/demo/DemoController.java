@@ -1,19 +1,25 @@
 package com.example.carecareforeldres.demo;
 
+import com.example.carecareforeldres.Entity.Role;
 import com.example.carecareforeldres.Entity.User;
+import com.example.carecareforeldres.Repository.RoleRepository;
 import com.example.carecareforeldres.Repository.UserRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
+@CrossOrigin(origins = "*",allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/v1/demo-controller")
 public class DemoController {
@@ -21,8 +27,9 @@ public class DemoController {
   private final UserRepository userRepository;
   private final JavaMailSender emailSender;
   private final PasswordEncoder passwordEncoder;
-
+  private  final  RoleRepository roleRepository;
   private String resetCode;
+
 
   @GetMapping("/profile")
   @PreAuthorize("hasAuthority('USER')")
@@ -36,10 +43,11 @@ public class DemoController {
     return "You are on Dashboard page";}
 
   @Autowired
-  public DemoController(UserRepository userRepository, JavaMailSender emailSender, PasswordEncoder passwordEncoder) {
+  public DemoController(UserRepository userRepository, JavaMailSender emailSender, PasswordEncoder passwordEncoder, RoleRepository roleRepository) {
     this.userRepository = userRepository;
     this.emailSender = emailSender;
     this.passwordEncoder = passwordEncoder;
+    this.roleRepository = roleRepository;
   }
 
   @PostMapping ("/forgotPassword")
@@ -95,4 +103,25 @@ public class DemoController {
     int number = rnd.nextInt(999999);
     return String.format("%06d", number);
   }
+
+ //@Scheduled(fixedRate = 30000)
+  @PutMapping(value = "/WakeUpAccount")
+  public void retrieveAndUpdateStatusContrat() {
+    Date d = new Date(System.currentTimeMillis());
+
+    List<User> Users = userRepository.findAll();
+    for (User u : Users)
+      if (u.getSleep_time() != null) {
+        long elapsedms = Math.abs(d.getTime() - u.getSleep_time().getTime());//Calcule la différence de temps en millisecondes  l'heure actuelle (d) et l'heure de sommeil de
+        long diff = TimeUnit.MINUTES.convert(elapsedms, TimeUnit.MILLISECONDS);
+        System.out.println("Diference  :" + diff);
+        if (diff >= 3) {
+          u.setEnabled(false);
+          u.setNbr_tentatives(0);
+          u.setSleep_time(null);
+          userRepository.save(u);
+        }
+      }
+  }
+
 }

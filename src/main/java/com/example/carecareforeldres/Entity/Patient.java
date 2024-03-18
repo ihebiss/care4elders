@@ -15,11 +15,18 @@ import java.io.Serializable;
 public class Patient implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idpatient;
-    @Enumerated(EnumType.STRING)
-    private TypePatient typePatient;
-    private Boolean archiver;
+   // private Integer idpatient;
+    //@Enumerated(EnumType.STRING)
+    //private TypePatient typePatient;
+    //private Boolean archiver;
 
-    private Integer user;
+    //private Integer user;
+    Integer idpatient;
+    String nom;
+    String mail;
+    Integer user;
+    @Enumerated(EnumType.STRING)
+    TypePatient typePatient;
+    boolean archiver;
 
 }

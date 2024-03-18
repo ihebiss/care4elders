@@ -14,5 +14,7 @@ public class RegisterRequest {
   private String lastname;
   private String email;
   private String password;
+  private String region;
+  private String numphone;
   private boolean mfaEnabled;
 }

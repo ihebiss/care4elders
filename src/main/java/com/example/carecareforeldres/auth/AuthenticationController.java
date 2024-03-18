@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 
 
 @CrossOrigin(origins = "*",allowedHeaders = "*")
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
 public class AuthenticationController {
+
 
   private final AuthenticationService service;
 
@@ -41,6 +43,11 @@ public class AuthenticationController {
   ) {
     return ResponseEntity.ok(service.verifyCode(verificationRequest));
   }
+  @GetMapping("/users/connected/{role}")
+  public List<User> getConnectedUsersWithRole(@PathVariable String role) {
+    return service.getConnectedUsersWithRole(role);
+  }
+
 
 
 }

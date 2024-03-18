@@ -21,10 +21,15 @@ public class User implements UserDetails {
     private Integer id;
     private String firstname;
     private String lastname;
+    private String region;
+    private Integer nbr_tentatives;
+    private String numphone;
+    private Date sleep_time;
+    private Boolean enabled;
     private String email;
-    private String passwd;
-private boolean mfaEnabled;
-private String secret;
+     private String passwd;
+     private boolean mfaEnabled;
+    private String secret;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
@@ -71,7 +76,7 @@ private String secret;
         return true;
     }
     @OneToMany(mappedBy = "UserAuth" ,cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private Set<Role> roles;
+    private Set<Role> roles ;
     //////////////////// ahiya il mmethode//////////// ray matkhdimch
     //  public Set<Role> getRoles() {return roles != null ? roles : Collections.emptySet();}
    
